@@ -1,0 +1,25 @@
+---
+  - name: "Install chrony"
+    hosts: 
+    tasks:
+
+    - name: "install chrony"
+      shell: "dnf install chrony"
+      register: "output"
+
+    
+
+    - name: "start chrony"
+      shell: "systemctl start chronyd"
+      register: "output"
+
+    - name: "status chrony"
+      shell: "systemctl status chronyd"
+      register: "output"
+
+    - name: "enable chrony"
+      shell: "systemctl enable chronyd"
+      register: "output"
+
+    
+
