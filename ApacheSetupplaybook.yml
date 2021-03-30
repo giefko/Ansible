@@ -1,0 +1,35 @@
+---
+- name: Install Apache
+  hosts: all
+  become: true
+
+tasks:
+  -name: Install Apache
+   yum:
+    name:
+      - httpd
+      - httpd-devel
+      state: present
+
+  -name: Copy conf files
+   copy:
+    src: "{{ item['src'] }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    gropu: root
+    mode: 0644 
+  with_items:
+    - src: httpd.conf
+      dest: /etc/httpd/conf/httpd.conf 
+    - src: httpd-vhost 
+      dest: /etc/httpd/conf/httpd.conf 
+   
+  - name: Ensure it started
+    service:
+      name: httpd
+      state: started
+      enabled: true
+
+
+
+
