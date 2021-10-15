@@ -1,0 +1,14 @@
+---
+
+- name: Playbook to handle users
+  hosts: app
+  become: yes
+  
+
+  tasks:
+    - name: Copy files
+      copy:
+        src: /path/usenotrootuser/cccc
+        dest: /path/usenotrootuser/cccc2
+        remote_src: yes
+
